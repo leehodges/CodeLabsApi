@@ -44,14 +44,13 @@
 1. Use template to create a new repo
    
 2. Open in your IDE
-3. Delete credentials.yml.enc
-4. run EDITOR="code --wait" bin/rails credentials:edit
+3. run EDITOR="code --wait" bin/rails credentials:edit
     * This will create a new master.key and new credentials.yml.enc
     
-5. Put in all environment variables below
+4. Put in all environment variables below
     * all are needed, use place holders for time being and edit as you go
     
-6. Edit this ReadME for your new project! to get rid of all this un needed information, you can keep the Existing project section if you like
+5. Edit this ReadME for your new project! to get rid of all this un needed information, you can keep the Existing project section if you like
 </div>
 
 <div id="existing">
