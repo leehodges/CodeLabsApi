@@ -76,7 +76,7 @@
 ## Environment Variables
 
     invitation:
-         url: 'https://urlhere'
+        url: 'https://urlhere'
 
     twilio:
         default_number: '555-555-5555'
