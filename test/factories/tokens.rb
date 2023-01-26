@@ -1,9 +1,11 @@
+require 'faker'
 FactoryBot.define do
   factory :token do
-    user { nil }
-    value { "MyString" }
-    expiry { "2021-11-22 12:52:50" }
-    ip { "MyString" }
-    revocation_date { "2021-11-22 12:52:50" }
+    id { Faker::Number.unique.number(digits: 5) }
+    user_id { nil }
+    value { Faker::Blockchain::Bitcoin.address }
+    expiry { DateTime.now + 7.days }
+    ip { nil }
+    revocation_date { nil }
   end
 end

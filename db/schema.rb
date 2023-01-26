@@ -10,48 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_22_185403) do
-
+ActiveRecord::Schema[7.0].define(version: 2021_11_22_185403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "roles", force: :cascade do |t|
     t.string "slug"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tokens", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "value"
-    t.datetime "expiry"
+    t.datetime "expiry", precision: nil
     t.string "ip"
-    t.datetime "revocation_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "revocation_date", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_tokens_on_user_id"
   end
 
   create_table "user_roles", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "role_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["role_id"], name: "index_user_roles_on_role_id"
     t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "phone"
-    t.string "password_digest"
+    t.string "email", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "phone", null: false
+    t.string "password_digest", null: false
     t.boolean "invitation_accepted", default: false
     t.string "invitation_token"
-    t.datetime "invitation_expiration"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "invitation_expiration", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -1,0 +1,511 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Base API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/users/login": {
+      "post": {
+        "summary": "login user",
+        "tags": [
+          "Users"
+        ],
+        "description": "Logs in a user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/login_user_payload"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error: Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/unauthenticated_user"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login_user"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/logout": {
+      "delete": {
+        "summary": "logout user",
+        "tags": [
+          "Users"
+        ],
+        "description": "Logs out a user",
+        "security": [
+          {
+            "bearer_auth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "logged out user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/logout_user"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "authentication failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bad_credentials"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/me": {
+      "get": {
+        "summary": "me user",
+        "tags": [
+          "Users"
+        ],
+        "description": "Display the current user",
+        "security": [
+          {
+            "bearer_auth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "user profile",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/me"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "authentication failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bad_credentials"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/create": {
+      "post": {
+        "summary": "create user",
+        "tags": [
+          "Users"
+        ],
+        "description": "Create a new user",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "user created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/create_user_payload"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_saving_user"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/create_user"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearer_auth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearer_format": "string"
+      }
+    },
+    "schemas": {
+      "create_user": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "nullable": false
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": false
+          },
+          "email": {
+            "type": "string",
+            "nullable": false
+          },
+          "phone": {
+            "type": "string",
+            "nullable": false
+          },
+          "password": {
+            "type": "string",
+            "nullable": false
+          },
+          "password_confirmation": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "email",
+          "phone",
+          "password",
+          "password_confirmation"
+        ]
+      },
+      "login_user_payload": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "user": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 50428
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "ronni@welch.com"
+                  },
+                  "first_name": {
+                    "type": "string",
+                    "example": "Teena"
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "example": "Murray"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Teena Murray"
+                  },
+                  "token": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 17333
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "example": "2023-01-26 19:15:43 UTC"
+                      },
+                      "expiry": {
+                        "type": "string",
+                        "example": "2023-02-02 19:15:43 UTC"
+                      },
+                      "ip": {
+                        "type": "any",
+                        "example": null
+                      },
+                      "revocation_date": {
+                        "type": "any",
+                        "example": null
+                      },
+                      "updated_at": {
+                        "type": "string",
+                        "example": "2023-01-26 19:15:43 UTC"
+                      },
+                      "user_id": {
+                        "type": "integer",
+                        "example": 50428
+                      },
+                      "value": {
+                        "type": "string",
+                        "example": "1HXwu62Vcj44vj5uWZUF2qrHW9UkQHbmwT"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "token": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 17333
+              },
+              "created_at": {
+                "type": "string",
+                "example": "2023-01-26 19:15:43 UTC"
+              },
+              "expiry": {
+                "type": "string",
+                "example": "2023-02-02 19:15:43 UTC"
+              },
+              "ip": {
+                "type": "any",
+                "example": null
+              },
+              "revocation_date": {
+                "type": "any",
+                "example": null
+              },
+              "updated_at": {
+                "type": "string",
+                "example": "2023-01-26 19:15:43 UTC"
+              },
+              "user_id": {
+                "type": "integer",
+                "example": 50428
+              },
+              "value": {
+                "type": "string",
+                "example": "1HXwu62Vcj44vj5uWZUF2qrHW9UkQHbmwT"
+              }
+            }
+          },
+          "status": {
+            "type": "integer",
+            "example": 200
+          }
+        }
+      },
+      "unauthenticated_user": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "errors": {
+            "type": "string",
+            "example": "User not authenticated"
+          },
+          "status": {
+            "type": "integer",
+            "example": 401
+          }
+        }
+      },
+      "logout_user": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "payload": {
+            "type": "string",
+            "example": "You have been logged out"
+          }
+        }
+      },
+      "login_user": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "required": true,
+            "description": "email required"
+          },
+          "password": {
+            "type": "string",
+            "required": true,
+            "description": "password required"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "bad_credentials": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Bad Credentials"
+          },
+          "status": {
+            "type": "integer",
+            "example": 401
+          }
+        }
+      },
+      "me": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 50428
+              },
+              "email": {
+                "type": "string",
+                "example": "ronni@welch.com"
+              },
+              "first_name": {
+                "type": "string",
+                "example": "Teena"
+              },
+              "last_name": {
+                "type": "string",
+                "example": "Murray"
+              },
+              "name": {
+                "type": "string",
+                "example": "Teena Murray"
+              }
+            }
+          }
+        }
+      },
+      "create_user_payload": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 50428
+              },
+              "email": {
+                "type": "string",
+                "example": "ronni@welch.com"
+              },
+              "first_name": {
+                "type": "string",
+                "example": "Teena"
+              },
+              "last_name": {
+                "type": "string",
+                "example": "Murray"
+              },
+              "name": {
+                "type": "string",
+                "example": "Teena Murray"
+              },
+              "phone": {
+                "type": "string",
+                "example": "5780239257"
+              }
+            }
+          }
+        }
+      },
+      "error_saving_user": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "errors": {
+            "type": "string",
+            "example": "There was a problem creating a new user"
+          },
+          "status": {
+            "type": "integer",
+            "example": 400
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://{localHost}",
+      "variables": {
+        "localHost": {
+          "default": "localhost:3000"
+        }
+      }
+    },
+    {
+      "url": "https://{staging}",
+      "variables": {
+        "staging": {
+          "default": "set-staging-url-in-swagger_helper.rb"
+        }
+      }
+    },
+    {
+      "url": "https://{production}",
+      "variables": {
+        "production": {
+          "default": "set-production-url-in-swagger_helper.rb"
+        }
+      }
+    }
+  ]
+}

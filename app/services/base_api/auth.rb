@@ -27,7 +27,7 @@ module BaseApi
     def self.clear_other_tokens(user, token)
       if user
         Token.where(user_id: user.id).where.not(value: token).update(revocation_date: DateTime.now)
-        return ServiceContract.success(true)
+        ServiceContract.success(true)
       else
         ServiceContract.error('Error Revoking Past Logins')
       end

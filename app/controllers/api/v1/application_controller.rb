@@ -27,7 +27,7 @@ class Api::V1::ApplicationController < ActionController::API
   def render_unauthorized
     logger.debug "*** UNAUTHORIZED REQUEST: '#{request.env['HTTP_AUTHORIZATION']}' ***"
     headers['WWW-Authenticate'] = 'Token realm="Application"'
-    render json: { error: 'Bad credentials' }, status: 401 and return
+    render json: { error: 'Bad credentials', status: 401 }, status: 401
   end
 
   def ensure_required_params(required_params, passed_in_params)
@@ -45,7 +45,8 @@ class Api::V1::ApplicationController < ActionController::API
   def render_error(errors:, status: :internal_server_error)
     render json: {
       success: false,
-      errors: errors
+      errors: errors,
+      status: status
     }, status: status
   end
 

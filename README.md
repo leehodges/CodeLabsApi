@@ -19,6 +19,7 @@
             </ol>
     <li><a href="#environment">Environment Variables</a></li>
     <li><a href="#general">General Information</a></li>
+   <li> <a href="#enhance">Enhancements</a></li>
 <li><a href="#changes">Change Log</a></li>
   </ol>
 </details>
@@ -30,7 +31,7 @@
   
 * Ruby 3.0.2
   
-* Rails 6.1.4
+* Rails 7
   
 </div>
 <hr> 
@@ -44,13 +45,14 @@
 1. Use template to create a new repo
    
 2. Open in your IDE
-3. run EDITOR="code --wait" bin/rails credentials:edit
+3. Delete credentials.yml.enc
+4. run EDITOR="code --wait" bin/rails credentials:edit
     * This will create a new master.key and new credentials.yml.enc
     
-4. Put in all environment variables below
+5. Put in all environment variables below
     * all are needed, use place holders for time being and edit as you go
     
-5. Edit this ReadME for your new project! to get rid of all this un needed information, you can keep the Existing project section if you like
+6. Edit this ReadME for your new project! to get rid of all this un needed information, you can keep the Existing project section if you like
 </div>
 
 <div id="existing">
@@ -58,8 +60,8 @@
 ### Existing Project
 
 1. master.key already exist
-    * Obtain master.key from Heroku
-        * Or from your team lead if you do  not have access 
+    * Obtain master.key 
+      *from your team lead if you do  not have access 
           
 2. Paste the master.key from your team lead/heroku and save
 3. run EDITOR="code --wait" bin/rails credentials:edit
@@ -76,7 +78,7 @@
 ## Environment Variables
 
     invitation:
-        url: 'https://urlhere'
+         url: 'https://urlhere'
 
     twilio:
         default_number: '555-555-5555'
@@ -98,6 +100,10 @@
         max_threads: #
         min_threads: #
 
+    swagger:
+        username: 'username'
+        password: 'password'
+
 ## Access Rails Environment Variables
 
     EDITOR="code --wait" bin/rails credentials:edit
@@ -112,9 +118,16 @@ up correctly.
 
 <div id="general">
 
+## API Documentation
+
+We are using swagger for API Documentaion. By default only the localhost server is setup. Going into swagger_helper to setup the production & staging urls
+
+API documentation is available at `/api-docs` and is protected by basic auth. The username and password are set in the environment variables.
+
+
 ## Test Suite
 
-You can run the test suite by calling `rails test`. This project uses MiniTest.
+You can run the test suite by calling `rspec`. This project uses RSpec for controller tests through swagger.
 
 ## Background Processing
 
@@ -124,13 +137,42 @@ You may want to look into utilizing something like Foreman to turn on and off al
 </div>
 <hr>
 
+<div id="enhance">
+      
+## Enhancements
+      
+      
+In the root directory there is now a credentials.rb file. Using:
+
+`ruby credentials.rb`
+
+The file will run allowing you to select an editor to edit rails credentials with.
+<ol>
+<li>You need to have master key already set in the project correctly</li>
+<li>The script will need to be updated to match your credential layout</li>
+<li>Make sure to have options for both VSCode & RubyMine</li>
+<li>This only works on Macs</li>
+</ol>
+
+</div>
+<hr>
 <div id="changes">
 
 ## Coming Soon
 
-Rails 7 stable is almost ready for release in the upcoming months this template will be upgraded to Rails 7. Documentation will be provided with changes/features made on the transition. 
+Nothing on the horizon right now, if you can think of a feature that should be in the baseAPI, speak up! - [Lee](https://github.com/leehodges) :shipit:
+
 
 ## Changes
-11/23 - Whitelisted local host and .ngrok -Lee
+~~11/23 - Whitelisted local host and .ngrok - [Lee](https://github.com/leehodges) :shipit:~~
+~~03/15/22 - Updated for Rails 7  - [Lee](https://github.com/leehodges) :shipit:~~
+~~03/15/22 - Added script to easily access credentials - [Lee](https://github.com/leehodges) :shipit:~~
+      <ul>
+            <li>01/25/23 - Updated for Rails 7.0.4.1  - [Lee](https://github.com/leehodges) :shipit:</li>
+            <li>01/25/22 - Upated for Ruby 3.2.0 - [Lee](https://github.com/leehodges) :shipit:</li>
+            <li>01/25/22 - Add rswag gems - [Lee](https://github.com/leehodges) :shipit:</li>
+            <li>01/25/22 - Add rswag docs - [Lee](https://github.com/leehodges) :shipit:</li>
+            <li>01/25/22 - Add rspec testing - [Lee](https://github.com/leehodges) :shipit:</li>
+      </ul>
 </div>
 <hr>

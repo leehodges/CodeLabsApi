@@ -12,16 +12,17 @@ module Api
 
         payload = {
           user: UserBlueprint.render_as_hash(result.payload[:user], view: :login),
-          token: TokenBlueprint.render_as_hash(result.payload[:token])
+          token: TokenBlueprint.render_as_hash(result.payload[:token]),
+          status: 200
         }
         render_success(payload: payload)
       end
 
       def logout
         result = BaseApi::Auth.logout(@current_user, @token)
-        render_error(errors: 'There was a problem logging out', status: :unprocessable_entity) and return unless result.success?
+        render_error(errors: 'There was a problem logging out', status: 401) and return unless result.success?
 
-        render_success(payload: 'You have been logged out')
+        render_success(payload: 'You have been logged out', status: 200)
       end
 
       def create
@@ -31,18 +32,18 @@ module Api
           user: UserBlueprint.render_as_hash(result.payload, view: :normal)
         }
         #  TODO: Invite user to accept invitation via registered email
-        render_success(payload: payload)
+        render_success(payload: payload, status: 201)
       end
 
       def me
-        render_success(payload: UserBlueprint.render_as_hash(@current_user))
+        render_success(payload: UserBlueprint.render_as_hash(@current_user), status: 200)
       end
 
       def validate_invitation
         user = User.invite_token_is(params[:invitation_token]).invite_not_expired.first
 
-        render_success(payload: { validated: false }) and return if user.nil?
-        render_success(payload: { validated: true })
+        render_error(errors: { validated: false, status: 401 }) and return if user.nil?
+        render_success(payload: { validated: true, status: 200 })
       end
     end
   end
