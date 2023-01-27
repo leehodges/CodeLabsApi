@@ -8,7 +8,7 @@ class Question
 end
 
 
-p1 = "\n\n ========== Select an IDE ========= \n\n 1. VsCode \n 2. RubyMine \n 3. Exit \n\n ==================================\n\n"
+p1 = "\n\n ========== Select an IDE ========= \n\n 1. VsCode \n 2. RubyMine \n 3. Exit \n\n ==================================\n\n \n\n Compatibility: Mac OS Only - sorry Windows/Linux folks \n\n"
 
 @questions = [
   Question.new(p1, '')
