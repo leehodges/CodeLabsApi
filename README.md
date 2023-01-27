@@ -29,9 +29,9 @@
 
 <div id="version">
   
-* Ruby 3.0.2
+* Ruby 3.2.0
   
-* Rails 7
+* Rails 7.0.4.1
   
 </div>
 <hr> 
