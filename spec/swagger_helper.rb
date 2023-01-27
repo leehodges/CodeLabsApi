@@ -27,7 +27,6 @@ RSpec.configure do |config|
         version: "v1"
       },
       paths: {},
-      consumes: ["multipart/form-data"],
       consumes: ["application/json"],
       produces: ["application/json"],
       components: {

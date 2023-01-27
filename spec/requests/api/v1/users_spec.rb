@@ -33,7 +33,8 @@ RSpec.describe 'api/v1/users', type: :request do
           }
           example.metadata[:response][:content] = content.deep_merge(example_spec)
         end
-        schema '$ref' => '#/components/schemas/login_user_payload'
+
+        schema example: {"success": true, payload: UserBlueprint.render_as_hash(user, view: :login ), "status": 200}
         run_test!
       end
       response "401", "Error: Unauthorized" do
@@ -137,7 +138,7 @@ RSpec.describe 'api/v1/users', type: :request do
           }
           example.metadata[:response][:content] = content.deep_merge(example_spec)
         end
-        schema '$ref' => '#/components/schemas/me'
+        schema example: {payload: UserBlueprint.render_as_hash(user), "status": 200}
         run_test!
       end
 
@@ -190,8 +191,9 @@ RSpec.describe 'api/v1/users', type: :request do
             }
           }
           example.metadata[:response][:content] = content.deep_merge(example_spec)
+
         end
-        schema '$ref' => '#/components/schemas/create_user_payload'
+        schema example: {"success": true, payload: UserBlueprint.render_as_hash(user, view: :normal), status: 201}
         run_test!
       end
 

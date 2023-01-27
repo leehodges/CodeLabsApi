@@ -21,7 +21,7 @@ def run_cred(questions)
     Question.new("\n\n ========== Select Environment for Vs Code ========= \n\n 1. Development \n 2. Staging \n 3. Production \n 4. No Environment \n 5. Test \n 6. start over \n 7. Exit \n\n ===================================================\n\n", ''),
   ]
   prompt_3 = [
-    Question.new("\n\n ========== Select Environment for RubyMine ========= \n\n 1 . Development \n 2. Staging \n 3. Production \n 4. No Environment \n 5. Test \n 6. start over \n 7. Exit \n\n ==================================================\n\n", '')
+    Question.new("\n\n ========== Select Environment for RubyMine ========= \n\n 1. Development \n 2. Staging \n 3. Production \n 4. No Environment \n 5. Test \n 6. start over \n 7. Exit \n\n ==================================================\n\n", '')
   ]
 
   questions.each do |question|
