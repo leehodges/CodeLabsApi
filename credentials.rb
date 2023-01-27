@@ -31,7 +31,7 @@ def run_cred(questions)
     when '1'
       env_select_vs_code(prompt_2)
     when '2'
-      env_select_rubymine(prompt_2)
+      env_select_rubymine(prompt_3)
     when '3'
       puts 'cool, thanks for wasting my neuro net processing power, cya'
       exit
