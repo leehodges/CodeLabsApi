@@ -48,6 +48,7 @@
 3. Delete credentials.yml.enc
 4. run EDITOR="code --wait" bin/rails credentials:edit
     * This will create a new master.key and new credentials.yml.enc
+      * WINDOWS - EDITOR=“nano” bin/rails credentials:edit
     
 5. Put in all environment variables below
     * all are needed, use place holders for time being and edit as you go
