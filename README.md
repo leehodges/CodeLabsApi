@@ -122,7 +122,7 @@ up correctly.
 
 ## API Documentation
 
-We are using swagger for API Documentaion. By default only the localhost server is setup. Going into swagger_helper to setup the production & staging urls
+We are using swagger for API Documentation. By default only the localhost server is setup. Going into swagger_helper to setup the production & staging urls
 
 API documentation is available at `/api-docs` and is protected by basic auth. The username and password are set in the environment variables.
 
@@ -171,7 +171,7 @@ Nothing on the horizon right now, if you can think of a feature that should be i
 ~~03/15/22 - Added script to easily access credentials - [Lee](https://github.com/leehodges) :shipit:~~
       <ul>
             <li>01/25/23 - Updated for Rails 7.0.4.1  - [Lee](https://github.com/leehodges) :shipit:</li>
-            <li>01/25/22 - Upated for Ruby 3.2.0 - [Lee](https://github.com/leehodges) :shipit:</li>
+            <li>01/25/22 - Updated for Ruby 3.2.0 - [Lee](https://github.com/leehodges) :shipit:</li>
             <li>01/25/22 - Add rswag gems - [Lee](https://github.com/leehodges) :shipit:</li>
             <li>01/25/22 - Add rswag docs - [Lee](https://github.com/leehodges) :shipit:</li>
             <li>01/25/22 - Add rspec testing - [Lee](https://github.com/leehodges) :shipit:</li>
