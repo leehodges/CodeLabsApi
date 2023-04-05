@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'digest/sha1'
-module BaseApi
+module PracticeApi
   # Generates a random access token
   module AccessToken
     def self.generate(model)

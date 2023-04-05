@@ -7,7 +7,7 @@ module Api
       skip_before_action :authenticate, only: %i[login create]
 
       def login
-        result = BaseApi::Auth.login(params[:email], params[:password], @ip)
+        result = PracticeApi::Auth.login(params[:email], params[:password], @ip)
         render_error(errors: 'User not authenticated', status: 401) and return unless result.success?
 
         payload = {
@@ -19,14 +19,14 @@ module Api
       end
 
       def logout
-        result = BaseApi::Auth.logout(@current_user, @token)
+        result = PracticeApi::Auth.logout(@current_user, @token)
         render_error(errors: 'There was a problem logging out', status: 401) and return unless result.success?
 
         render_success(payload: 'You have been logged out', status: 200)
       end
 
       def create
-        result = BaseApi::Users.new_user(params)
+        result = PracticeApi::Users.new_user(params)
         render_error(errors: 'There was a problem creating a new user', status: 400) and return unless result.success?
         payload = {
           user: UserBlueprint.render_as_hash(result.payload, view: :normal)

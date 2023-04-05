@@ -10,9 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2021_11_22_185403) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_30_231609) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "medications", force: :cascade do |t|
+    t.string "name"
+    t.string "dosage"
+    t.string "frequency"
+    t.string "date"
+    t.string "day"
+    t.string "benefits"
+    t.string "side_effects"
+    t.string "start_date"
+    t.string "stop_date"
+    t.string "reason_stopped"
+    t.boolean "is_current"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "morning"
+    t.boolean "midday"
+    t.boolean "evening"
+    t.boolean "night"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_medications_on_user_id"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "slug"
@@ -44,7 +66,6 @@ ActiveRecord::Schema[7.0].define(version: 2021_11_22_185403) do
     t.string "email", null: false
     t.string "first_name", null: false
     t.string "last_name", null: false
-    t.string "phone", null: false
     t.string "password_digest", null: false
     t.boolean "invitation_accepted", default: false
     t.string "invitation_token"
@@ -54,6 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_11_22_185403) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "medications", "users"
   add_foreign_key "tokens", "users"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"

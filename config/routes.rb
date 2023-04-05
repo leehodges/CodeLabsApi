@@ -27,6 +27,12 @@ Rails.application.routes.draw do
         get :me
         post :create
       end
+      namespace :medications do
+        post :new
+        get :meds
+        delete :delete
+        patch :edit
+      end
     end
   end
 end

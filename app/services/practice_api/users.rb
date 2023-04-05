@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module BaseApi
+module PracticeApi
   module Users
     def self.new_user(params)
 
@@ -8,7 +8,6 @@ module BaseApi
         first_name: params[:first_name],
         last_name: params[:last_name],
         email: params[:email],
-        phone: params[:phone],
         password: params[:password],
         password_confirmation: params[:password_confirmation]
       )
@@ -17,7 +16,6 @@ module BaseApi
       rescue ActiveRecord::RecordInvalid => exception
         return ServiceContract.error('Error saving user.') unless user.valid?
       end
-
 
       ServiceContract.success(user)
     end

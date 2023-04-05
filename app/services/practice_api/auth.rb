@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module BaseApi
+module PracticeApi
   # Handles user authentication (login, logout)
   module Auth
     def self.login(email, password, ip)
