@@ -4,8 +4,8 @@
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
 #
-max_threads_count = Rails.application.credentials.workers[:max_threads] || 1
-min_threads_count = Rails.application.credentials.workers[:min_threads] || 1
+max_threads_count = 5
+min_threads_count = 1
 threads min_threads_count, max_threads_count
 
 # Specifies the `worker_timeout` threshold that Puma will use to wait before
