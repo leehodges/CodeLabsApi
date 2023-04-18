@@ -5,7 +5,7 @@ require 'factory_bot'
 RSpec.describe 'api/v1/medications', type: :request do
   user = FactoryBot.create(:user)
   token = FactoryBot.create(:token, user_id: user.id)
-  medication = FactoryBot.create(:medication)
+  medication = FactoryBot.create(:medication, user_id: user.id)
 
   path '/api/v1/medications/new' do
     post('new medication') do
@@ -17,7 +17,7 @@ RSpec.describe 'api/v1/medications', type: :request do
         parameter name: :new_medication, in: :body, schema: { '$ref' => '#/components/schemas/new_medication'}
         response "200", "success" do
           let(:Authorization) { "Bearer " + token.value }
-        
+          byebug
           let(:new_medication) { {
             name: medication.name, 
             dosage: medication.dosage,
@@ -51,54 +51,54 @@ RSpec.describe 'api/v1/medications', type: :request do
     end
   end
 
-  path '/api/v1/medications/meds' do
+  # path '/api/v1/medications/meds' do
 
-    get('meds medication') do
-      response(200, 'successful') do
+  #   get('meds medication') do
+  #     response(200, 'successful') do
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-  end
+  #       after do |example|
+  #         example.metadata[:response][:content] = {
+  #           'application/json' => {
+  #             example: JSON.parse(response.body, symbolize_names: true)
+  #           }
+  #         }
+  #       end
+  #       run_test!
+  #     end
+  #   end
+  # end
 
-  path '/api/v1/medications/delete' do
+  # path '/api/v1/medications/delete' do
 
-    delete('delete medication') do
-      response(200, 'successful') do
+  #   delete('delete medication') do
+  #     response(200, 'successful') do
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-  end
+  #       after do |example|
+  #         example.metadata[:response][:content] = {
+  #           'application/json' => {
+  #             example: JSON.parse(response.body, symbolize_names: true)
+  #           }
+  #         }
+  #       end
+  #       run_test!
+  #     end
+  #   end
+  # end
 
-  path '/api/v1/medications/edit' do
+  # path '/api/v1/medications/edit' do
 
-    patch('edit medication') do
-      response(200, 'successful') do
+  #   patch('edit medication') do
+  #     response(200, 'successful') do
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-  end
+  #       after do |example|
+  #         example.metadata[:response][:content] = {
+  #           'application/json' => {
+  #             example: JSON.parse(response.body, symbolize_names: true)
+  #           }
+  #         }
+  #       end
+  #       run_test!
+  #     end
+  #   end
+  # end
 end
