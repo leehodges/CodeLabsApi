@@ -5,7 +5,6 @@ FactoryBot.define do
     email { Faker::Internet.email }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
-    phone { Faker::Number.number(digits: 10) }
     password { Faker::Internet.password(min_length: 8) }
     invitation_accepted { false }
     invitation_token { Faker::Blockchain::Bitcoin.address }

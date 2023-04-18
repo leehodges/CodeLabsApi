@@ -7,7 +7,7 @@ module Api
         result = PracticeApi::Medications.destroy(params)
         render_error(errors: result.errors) and return unless result.success?
 
-        render_success(payload: result.payload)
+        render_success(payload: result)
       end
 
       def edit
@@ -28,7 +28,7 @@ module Api
         result = PracticeApi::Medications.create(params)
         render_error(errors: "Error saving medication", status: 500) and return unless result.success?
 
-        render_success(payload: result, status: 200)
+        render_success(payload: result.payload, status: 200)
       end
     end
   end

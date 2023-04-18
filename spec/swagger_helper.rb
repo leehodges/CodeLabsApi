@@ -45,11 +45,10 @@ RSpec.configure do |config|
               first_name: { type: :string, nullable: false },
               last_name: { type: :string, nullable: false },
               email: { type: :string, nullable: false },
-              phone: { type: :string, nullable: false },
               password: { type: :string, nullable: false },
               password_confirmation: { type: :string, nullable: false }
             },
-            required: %w[first_name last_name email phone password password_confirmation]
+            required: %w[first_name last_name email password password_confirmation]
           },
           login_user_payload: {
             type: :object, properties: {
@@ -133,8 +132,7 @@ RSpec.configure do |config|
                       email: { type: :string, example: user.email },
                       first_name: { type: :string, example: user.first_name },
                       last_name: { type: :string, example: user.last_name },
-                      name: { type: :string, example: user.name },
-                      phone: { type: :string, example: user.phone }
+                      name: { type: :string, example: user.name }
                     }
                 }
               }
@@ -147,7 +145,56 @@ RSpec.configure do |config|
             }
           },
 
-          ########### END_USER_SPEC SCHEMAS ###########
+          ############ END_USER_SPEC SCHEMAS ############
+          ################################################
+          ########### MEDICATIONS_SPEC SCHEMAS ###########
+          new_medication: {
+            type: :object, properties: {
+              name: {type: :string, nullable: false },
+              dosage: {type: :string, nullable: true },
+              frequency: {type: :string, nullable: true },
+              date: {type: :string, nullable: true },
+              day: {type: :string, nullable: true },
+              benefits: {type: :string, nullable: true },
+              side_effects: {type: :string, nullable: true },
+              start_date: {type: :string, nullable: true },
+              stop_date: {type: :string, nullable: true },
+              reason_stopped: {type: :string, nullable: true },
+              is_current: {type: :boolean, nullable: false },
+              morning: {type: :boolean, nullable: true },
+              midday: {type: :boolean, nullable: true },
+              evening: {type: :boolean, nullable: true },
+              night: {type: :boolean, nullable: true },
+            }
+          },
+
+          new_medication_payload: {
+            type: :object, properties: {
+              success: {type: :boolean, example: true},
+              payload: {
+                id: {type: :integer},
+                name: {type: :string},
+                dosage: {type: :string},
+                frequency: {type: :string},
+                date: {type: :string},
+                day: {type: :string},
+                benefits: {type: :string},
+                side_effects: {type: :string},
+                start_date: {type: :string},
+                stop_date: {type: :string},
+                reason_stopped: {type: :string},
+                is_current: {type: :boolean},
+                created_at: {type: :string},
+                updated_at: {type: :string},
+                morning: {type: :boolean},
+                midday: {type: :boolean},
+                evening: {type: :boolean},
+                night: {type: :boolean},
+                user_id: {type: :integer}
+              }
+            }
+          }
+          ########### END MEDICATIONS_SPEC SCHEMAS ###########
         }
       },
       servers: [

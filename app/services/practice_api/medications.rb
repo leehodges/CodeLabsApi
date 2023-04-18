@@ -3,8 +3,9 @@
 module PracticeApi
   module Medications
     def self.create(params)
+
       user = User.find_by(id: params[:user_id])
-      medication = user.medications.create(
+      medication = user.medications.new(
         name: params[:name],
         dosage: params[:dosage],
         frequency: params[:frequency],
@@ -23,12 +24,11 @@ module PracticeApi
       )
       return ServiceContract.error('Error creating medication.') unless medication.save
 
-      ServiceContract.success(medication)
+      ServiceContract.success([medication])
     end
 
     def self.destroy(params)
       user = User.find(params[:user_id])
-      puts user
       medication = user.medications.find(params[:med_id])
       if medication
         return ServiceContract.error('Error deleting medication') unless medication.destroy
@@ -40,7 +40,7 @@ module PracticeApi
 
     def self.edit_med(params)
       user = User.find(params[:user_id])
-      editedMed = user.medications.find(params[:id])
+      editedMed = Medication.find(params[:id])
       if editedMed
         editedMed.update(
           name: params[:name],

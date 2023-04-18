@@ -5,6 +5,46 @@
     "version": "v1"
   },
   "paths": {
+    "/api/v1/medications/new": {
+      "post": {
+        "summary": "new medication",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/api/v1/medications/meds": {
+      "get": {
+        "summary": "meds medication",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/api/v1/medications/delete": {
+      "delete": {
+        "summary": "delete medication",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/api/v1/medications/edit": {
+      "patch": {
+        "summary": "edit medication",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
     "/api/v1/users/login": {
       "post": {
         "summary": "login user",
@@ -19,22 +59,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": {
-                    "id": 33218,
-                    "email": "carmelo@olson-bailey.info",
-                    "first_name": "Tabitha",
-                    "last_name": "Hartmann",
-                    "name": "Tabitha Hartmann",
-                    "token": {
-                      "id": 36599,
-                      "created_at": "2023-01-27T19:34:48.320Z",
-                      "expiry": "2023-02-03T19:34:48.319Z",
-                      "ip": null,
-                      "revocation_date": null,
-                      "updated_at": "2023-01-27T19:34:48.320Z",
-                      "user_id": 33218,
-                      "value": "1Nkh2yGziXLmRUcBHcp6hmEwhQJ5p5tyk2"
-                    }
+                  "example": {
+                    "success": true,
+                    "payload": {
+                      "id": 88390,
+                      "email": "ahmed_waters@smitham-kessler.io",
+                      "first_name": "Virgilio",
+                      "last_name": "Tromp",
+                      "name": "Virgilio Tromp",
+                      "token": {
+                        "id": 62666,
+                        "created_at": "2023-04-13 23:41:46 UTC",
+                        "expiry": "2023-04-20 23:41:46 UTC",
+                        "ip": null,
+                        "revocation_date": null,
+                        "updated_at": "2023-04-13 23:41:46 UTC",
+                        "user_id": 88390,
+                        "value": "1EWcjkjqwpNGAYY2nAPUX6VYiupmwZR7sV"
+                      }
+                    },
+                    "status": 200
                   }
                 }
               }
@@ -116,11 +160,16 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "id": 33218,
-                  "email": "carmelo@olson-bailey.info",
-                  "first_name": "Tabitha",
-                  "last_name": "Hartmann",
-                  "name": "Tabitha Hartmann"
+                  "example": {
+                    "payload": {
+                      "id": 88390,
+                      "email": "ahmed_waters@smitham-kessler.io",
+                      "first_name": "Virgilio",
+                      "last_name": "Tromp",
+                      "name": "Virgilio Tromp"
+                    },
+                    "status": 200
+                  }
                 }
               }
             }
@@ -152,12 +201,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "id": 33218,
-                  "email": "carmelo@olson-bailey.info",
-                  "first_name": "Tabitha",
-                  "last_name": "Hartmann",
-                  "name": "Tabitha Hartmann",
-                  "phone": "1615946227"
+                  "example": {
+                    "success": true,
+                    "payload": {
+                      "id": 88390,
+                      "email": "ahmed_waters@smitham-kessler.io",
+                      "first_name": "Virgilio",
+                      "last_name": "Tromp",
+                      "name": "Virgilio Tromp"
+                    },
+                    "status": 201
+                  }
                 }
               }
             }
@@ -215,10 +269,6 @@
             "type": "string",
             "nullable": false
           },
-          "phone": {
-            "type": "string",
-            "nullable": false
-          },
           "password": {
             "type": "string",
             "nullable": false
@@ -232,7 +282,6 @@
           "first_name",
           "last_name",
           "email",
-          "phone",
           "password",
           "password_confirmation"
         ]
@@ -252,38 +301,38 @@
                 "properties": {
                   "id": {
                     "type": "integer",
-                    "example": 35103
+                    "example": 63907
                   },
                   "email": {
                     "type": "string",
-                    "example": "carolyn.hansen@gutkowski.net"
+                    "example": "maren@schaden.net"
                   },
                   "first_name": {
                     "type": "string",
-                    "example": "Andre"
+                    "example": "Fleta"
                   },
                   "last_name": {
                     "type": "string",
-                    "example": "Shanahan"
+                    "example": "Flatley"
                   },
                   "name": {
                     "type": "string",
-                    "example": "Andre Shanahan"
+                    "example": "Fleta Flatley"
                   },
                   "token": {
                     "type": "object",
                     "properties": {
                       "id": {
                         "type": "integer",
-                        "example": 80334
+                        "example": 59562
                       },
                       "created_at": {
                         "type": "string",
-                        "example": "2023-01-27 19:34:48 UTC"
+                        "example": "2023-04-13 23:41:46 UTC"
                       },
                       "expiry": {
                         "type": "string",
-                        "example": "2023-02-03 19:34:48 UTC"
+                        "example": "2023-04-20 23:41:46 UTC"
                       },
                       "ip": {
                         "type": "any",
@@ -295,15 +344,15 @@
                       },
                       "updated_at": {
                         "type": "string",
-                        "example": "2023-01-27 19:34:48 UTC"
+                        "example": "2023-04-13 23:41:46 UTC"
                       },
                       "user_id": {
                         "type": "integer",
-                        "example": 35103
+                        "example": 63907
                       },
                       "value": {
                         "type": "string",
-                        "example": "18271aBYLjZ8uCWuuRktL3ZJvhAWx1tiyM"
+                        "example": "1D3NUo2Msvy1YnQuQupPGgy6A7VsnkXB1B"
                       }
                     }
                   }
@@ -316,15 +365,15 @@
             "properties": {
               "id": {
                 "type": "integer",
-                "example": 80334
+                "example": 59562
               },
               "created_at": {
                 "type": "string",
-                "example": "2023-01-27 19:34:48 UTC"
+                "example": "2023-04-13 23:41:46 UTC"
               },
               "expiry": {
                 "type": "string",
-                "example": "2023-02-03 19:34:48 UTC"
+                "example": "2023-04-20 23:41:46 UTC"
               },
               "ip": {
                 "type": "any",
@@ -336,15 +385,15 @@
               },
               "updated_at": {
                 "type": "string",
-                "example": "2023-01-27 19:34:48 UTC"
+                "example": "2023-04-13 23:41:46 UTC"
               },
               "user_id": {
                 "type": "integer",
-                "example": 35103
+                "example": 63907
               },
               "value": {
                 "type": "string",
-                "example": "18271aBYLjZ8uCWuuRktL3ZJvhAWx1tiyM"
+                "example": "1D3NUo2Msvy1YnQuQupPGgy6A7VsnkXB1B"
               }
             }
           },
@@ -428,23 +477,23 @@
             "properties": {
               "id": {
                 "type": "integer",
-                "example": 35103
+                "example": 63907
               },
               "email": {
                 "type": "string",
-                "example": "carolyn.hansen@gutkowski.net"
+                "example": "maren@schaden.net"
               },
               "first_name": {
                 "type": "string",
-                "example": "Andre"
+                "example": "Fleta"
               },
               "last_name": {
                 "type": "string",
-                "example": "Shanahan"
+                "example": "Flatley"
               },
               "name": {
                 "type": "string",
-                "example": "Andre Shanahan"
+                "example": "Fleta Flatley"
               }
             }
           }
@@ -462,27 +511,23 @@
             "properties": {
               "id": {
                 "type": "integer",
-                "example": 35103
+                "example": 63907
               },
               "email": {
                 "type": "string",
-                "example": "carolyn.hansen@gutkowski.net"
+                "example": "maren@schaden.net"
               },
               "first_name": {
                 "type": "string",
-                "example": "Andre"
+                "example": "Fleta"
               },
               "last_name": {
                 "type": "string",
-                "example": "Shanahan"
+                "example": "Flatley"
               },
               "name": {
                 "type": "string",
-                "example": "Andre Shanahan"
-              },
-              "phone": {
-                "type": "string",
-                "example": "5035085086"
+                "example": "Fleta Flatley"
               }
             }
           }

@@ -75,13 +75,7 @@ RSpec.describe 'api/v1/users', type: :request do
         after do |example|
           content = example.metadata[:response][:content] || {}
           example_spec = {
-            "application/json"=>{
-              examples: {
-                test_example: {
-                  value: JSON.parse(response.body, symbolize_names: true)
-                }
-              }
-            }
+                  payload: JSON.parse(response.body, symbolize_names: true)
           }
           example.metadata[:response][:content] = content.deep_merge(example_spec)
         end
@@ -175,7 +169,7 @@ RSpec.describe 'api/v1/users', type: :request do
       produces "application/json"
       parameter name: :create_user, in: :body, schema: { '$ref' => '#/components/schemas/create_user' }
       response '201', "user created" do
-        let(:create_user) { { first_name: user.first_name, last_name: user.last_name, email: Faker::Internet.email, phone: user.phone, password: user.password } }
+        let(:create_user) { { first_name: user.first_name, last_name: user.last_name, email: Faker::Internet.email, password: user.password } }
         it 'returns a valid 201 response' do |example|
           assert_response_matches_metadata(example.metadata)
         end
