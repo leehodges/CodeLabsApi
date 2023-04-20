@@ -31,7 +31,55 @@
         ]
         "responses": {
           "200": {
-            "description": "successful"
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "success": true,
+                    "payload": {
+                      "name": "Ibuprofen",
+                      "is_current": true,
+                      "dosage": "30 mg",
+                      "frequency": "daily",
+                      "date": "",
+                      "day": "",
+                      "morning": false,
+                      "midday": true,
+                      "evening": false,
+                      "night": true,
+                      "benefits": "Reduces pain",
+                      "side_effects": "Upsets my stomach",
+                      "start_date": "May 2021",
+                      "stop_date": "",
+                      "reason_stopped": "",
+                      "id": 5,
+                      "user_id": 21
+                    }
+                  },
+                  "status": 200
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error: Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/unauthenticated_user"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login_user"
+              }
+            }
           }
         }
       }
