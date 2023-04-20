@@ -193,6 +193,67 @@ RSpec.configure do |config|
                 user_id: {type: :integer}
               }
             }
+          },
+
+          meds_medication: {
+            type: :object, properties: {
+              user_id: { type: :integer }
+            }
+          },
+
+          meds_medication_payload: {
+            type: :object, properties: {
+              success: {type: :boolean, example: true},
+              payload: {
+                id: {type: :integer},
+                name: {type: :string},
+                dosage: {type: :string},
+                frequency: {type: :string},
+                date: {type: :string},
+                day: {type: :string},
+                benefits: {type: :string},
+                side_effects: {type: :string},
+                start_date: {type: :string},
+                stop_date: {type: :string},
+                reason_stopped: {type: :string},
+                is_current: {type: :boolean},
+                created_at: {type: :string},
+                updated_at: {type: :string},
+                morning: {type: :boolean},
+                midday: {type: :boolean},
+                evening: {type: :boolean},
+                night: {type: :boolean},
+                user_id: {type: :integer}
+              }
+            }
+          },
+
+          delete_medication: {
+            type: :object, properties: {
+              user_id: {type: :integer},
+              med_id: {type: :integer}
+          }
+        },
+
+          edit_medication: {
+            type: :object, properties: {
+              name: {type: :string, nullable: false },
+              dosage: {type: :string, nullable: true },
+              frequency: {type: :string, nullable: true },
+              date: {type: :string, nullable: true },
+              day: {type: :string, nullable: true },
+              benefits: {type: :string, nullable: true },
+              side_effects: {type: :string, nullable: true },
+              start_date: {type: :string, nullable: true },
+              stop_date: {type: :string, nullable: true },
+              reason_stopped: {type: :string, nullable: true },
+              is_current: {type: :boolean, nullable: false },
+              morning: {type: :boolean, nullable: true },
+              midday: {type: :boolean, nullable: true },
+              evening: {type: :boolean, nullable: true },
+              night: {type: :boolean, nullable: true },
+              }
+            }
           }
           ########### END MEDICATIONS_SPEC SCHEMAS ###########
         }
@@ -224,7 +285,6 @@ RSpec.configure do |config|
         }
       ]
     }
-  }
   # Specify the format of the output Swagger file when running 'rswag:specs:swaggerize'.
   # The swagger_docs configuration option has the filename including format in
   # the key, this may want to be changed to avoid putting yaml in json files.
