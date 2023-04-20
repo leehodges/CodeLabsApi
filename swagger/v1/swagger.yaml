@@ -8,6 +8,27 @@
     "/api/v1/medications/new": {
       "post": {
         "summary": "new medication",
+         "tags": [
+          "Medications"
+        ],
+        "description": "Creates and stores a new medication. Only 'name' and 'is_current' are required."
+        "parameters": [
+          "name: string",
+          "dosage: string",
+          "frequency: string",
+          "date: string",
+          "day: string",
+          "benefits: string",
+          "side_effects: string",
+          "start_date: string",
+          "stop_date: string",
+          "reason_stopped: string",
+          "is_current: boolean",
+          "morning: boolean",
+          "midday: boolean",
+          "evening: boolean",
+          "night: boolean",
+        ]
         "responses": {
           "200": {
             "description": "successful"
