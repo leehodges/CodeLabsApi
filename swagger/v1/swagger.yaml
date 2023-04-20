@@ -7,7 +7,7 @@
   "paths": {
     "/api/v1/medications/new": {
       "post": {
-        "summary": "new medication",
+        "summary": "Add new medication",
          "tags": [
           "Medications"
         ],
@@ -77,7 +77,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/login_user"
+                "$ref": "#/components/schemas/new_med"
               }
             }
           }
@@ -86,10 +86,85 @@
     },
     "/api/v1/medications/meds": {
       "get": {
-        "summary": "meds medication",
+        "summary": "Gets user's medications",
+        "tags": [
+          "Medications"
+        ],
+        "description": "Retrieves a list of all of a user's stored medications.",
+        "parameters": [
+          "user_id: integer"
+        ],
         "responses": {
           "200": {
-            "description": "successful"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "success": true,
+                    "payload": {
+                      [{                    
+                      "name": "Ibuprofen",
+                      "is_current": true,
+                      "dosage": "30 mg",
+                      "frequency": "daily",
+                      "date": "",
+                      "day": "",
+                      "morning": false,
+                      "midday": true,
+                      "evening": false,
+                      "night": true,
+                      "benefits": "Reduces pain",
+                      "side_effects": "Upsets my stomach",
+                      "start_date": "May 2021",
+                      "stop_date": "",
+                      "reason_stopped": "",
+                      "id": 5,
+                      "user_id": 21
+                      },
+                      {
+                      "name": "Claritin",
+                      "is_current": false,
+                      "dosage": "20 mg",
+                      "frequency": "daily",
+                      "date": "",
+                      "day": "",
+                      "morning": false,
+                      "midday": false,
+                      "evening": false,
+                      "night": true,
+                      "benefits": "Reduces allergy symptoms",
+                      "side_effects": "Makes me sleepy",
+                      "start_date": "Spring 2020",
+                      "stop_date": "May 2022",
+                      "reason_stopped": "Side effects",
+                      "id": 12,
+                      "user_id": 21
+                      }]
+                    }
+                  },
+                  "status": 200
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error: Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/unauthenticated_user"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/new_med"
+              }
+            }
           }
         }
       }
