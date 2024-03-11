@@ -162,7 +162,8 @@ The file will run allowing you to select an editor to edit rails credentials wit
 
 ## Coming Soon
 
-Nothing on the horizon right now, if you can think of a feature that should be in the baseAPI, speak up! - [Lee](https://github.com/leehodges) :shipit:
+Whenever Rails 8 releases I plan to dockerize the BaseAPI
+- [Lee](https://github.com/leehodges) :shipit:
 
 
 ## Changes
